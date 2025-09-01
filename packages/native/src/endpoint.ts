@@ -16,9 +16,7 @@ export type WebViewEndpoint = Comlink.Endpoint & {
  */
 export function createWebViewRpcEndpoint(
   ref: RefObject<WebView | null>
-): WebViewEndpoint | undefined {
-  if (!ref) return undefined;
-
+): WebViewEndpoint {
   const listeners: EventListenerOrEventListenerObject[] = [];
   return {
     addEventListener: (type, listener) => {
