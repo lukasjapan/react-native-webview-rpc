@@ -15,8 +15,10 @@ export type WebViewEndpoint = Comlink.Endpoint & {
  * An endpoint of communicating with WebView
  */
 export function createWebViewRpcEndpoint(
-  ref: RefObject<WebView>
-): WebViewEndpoint {
+  ref: RefObject<WebView | null>
+): WebViewEndpoint | undefined {
+  if (!ref) return undefined;
+
   const listeners: EventListenerOrEventListenerObject[] = [];
   return {
     addEventListener: (type, listener) => {
@@ -75,5 +77,5 @@ document.dispatchEvent(new MessageEvent('ReactNativeWebViewCallback', { data: ${
  */
 class MessageEvent {
   public origin = "ReactNativeWebView";
-  constructor(public data: unknown) {}
+  constructor(public data: unknown) { }
 }
