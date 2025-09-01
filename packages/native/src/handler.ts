@@ -10,7 +10,7 @@ export function useWebViewRpcHandler<Rpcs>(
   webViewRef: RefObject<WebView | null>,
   rpcs: Rpcs
 ) {
-  const endpointRef = useRef<WebViewEndpoint>();
+  const endpointRef = useRef<WebViewEndpoint>(undefined);
   const onMessage: WebViewProps["onMessage"] = useCallback(
     (e) => {
       endpointRef.current?.onMessage(e);
